@@ -1147,6 +1147,23 @@ public class RotondAndesTM {
 			}
 			}
 			
+			Producto p=buscarProductoPorName(RestauranteProducto.getNomProducto());
+			if(p==null)
+			{
+				throw new Exception("El producto "+RestauranteProducto.getNomProducto()+" no está registrado en el sistema.");
+			}
+			
+			if(p.getCategoria().equals("Menu"))
+			{
+				if(darRestaurantesPorProducto(p.getNombre())!=null)
+				{
+					if(!darRestaurantesPorProducto(p.getNombre()).isEmpty())
+					{
+						throw new Exception("Otro restaurante ya sirve un menu con el nombre "+p.getNombre()+". Cambie el nombre del menu.");
+					}
+				}
+			}
+			
 			this.conn = darConexion();
 			daoRestauranteProductos.setConn(conn);
 			daoRestauranteProductos.addRestauranteProducto(RestauranteProducto);
@@ -1552,6 +1569,7 @@ public class RotondAndesTM {
 		DAOTablaPedidos daoPeds= new DAOTablaPedidos();
 		DAOTablaRestauranteProducto daoResPros= new DAOTablaRestauranteProducto();
 		DAOTablaUsuarios daoUsuarios = new DAOTablaUsuarios();
+		
 		try 
 		{			
 			Usuario x;
@@ -1574,6 +1592,21 @@ public class RotondAndesTM {
 				throw new Exception("El producto "+prodPed.getNomProducto()+" se acabó en "+prodPed.getNomRestaurante());
 			else
 			{
+				Producto pact=buscarProductoPorName(prodPed.getNomProducto());
+				if(pact.getCategoria().equals("Menu"))
+				{
+					for(ProductoMenu vaina:darProductosPorMenu(pact.getNombre()))
+					{						
+						String nomP=vaina.getNomProducto();
+						String nomR=prodPed.getNomRestaurante();
+						Long idz=prodPed.getIdPedido(); 
+						addProductoPedido(idUs,new ProductoPedido(idz, nomP, nomR));
+					}
+				}				
+
+				this.conn = darConexion();
+				daoResPros.setConn(conn);
+
 				int n=testeo.getUnidadesDisponibles();
 				testeo.setUnidadesDisponibles(n-1);
 				daoResPros.updateRestauranteProducto(testeo);
@@ -1912,6 +1945,26 @@ public class RotondAndesTM {
 			//////transaccion
 			this.conn = darConexion();
 			daoProds.setConn(conn);
+			Producto menuActual=daoProds.buscarProductoPorName(prodPed.getNomMenu());
+			if(menuActual==null)
+			{
+				throw new Exception("El menú "+prodPed.getNomMenu()+" no existe.");
+			}
+			String nomR="";
+			for(RestauranteProducto vaina:darRestaurantesPorProducto(menuActual.getNombre()))
+			{
+				nomR=vaina.getNomRestaurante();
+			}
+			if(nomR.equals(""))
+			{
+				throw new Exception("El menú "+prodPed.getNomMenu()+" no se vende en ningún restaurante, para agregar productos a un menú"
+						+ " este debe ser vendido en el mismo restaurante que sus productos.");
+			}
+			if(darRestauranteProducto(nomR, prodPed.getNomProducto())==null)
+			{
+				throw new Exception("El producto "+prodPed.getNomProducto()+" no se vende en "+nomR+". Para agregarlo al menu "+prodPed.getNomMenu()+
+						", el producto debe venderse en el mismo restaurante.");
+			}
 			List<ProductoMenu> listica=darProductosPorMenu(prodPed.getNomMenu());
 			Producto base=daoProds.buscarProductoPorName(prodPed.getNomProducto());
 			for(ProductoMenu p:listica)
