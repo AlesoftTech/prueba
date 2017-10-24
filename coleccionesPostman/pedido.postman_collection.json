@@ -1,0 +1,290 @@
+{
+	"variables": [],
+	"info": {
+		"name": "pedido",
+		"_postman_id": "70126e3d-081f-8f10-cd5c-2b1f930fe8f8",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Obtener los pedidos",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"]=responseCode.code==200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/RotondAndes/rest/0/pedidos",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": " {\n        \"id\": 4,\n        \"capacidad\": 25,\n        \"abierto\": false,\n        \"accesoNecEsp\": false,\n        \"asadores\": true,\n        \"extractores\": true,\n        \"calentadores\": true,\n        \"acondicionarse\": true\n    }"
+				},
+				"description": "Lo hace un no registrado"
+			},
+			"response": []
+		},
+		{
+			"name": "Agregar Pedido",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"]=responseCode.code==200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/RotondAndes/rest/0/pedidos",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"idPedido\": 4,\n        \"fecha\": \"2017-10-04\",\n        \"idZona\": 2,\n        \"precioTotal\": 0,\n        \"idUsuario\": null\n    }"
+				},
+				"description": "Lo hace un usuario no registrado"
+			},
+			"response": []
+		},
+		{
+			"name": "Agregar un Pedido (cliente)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"]=responseCode.code==200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/RotondAndes/rest/ID1/pedidos",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"idPedido\": 8,\n        \"fecha\": \"2017-10-04\",\n        \"idZona\": 2,\n        \"precioTotal\": 0,\n        \"idUsuario\": \"ID1\"\n    }"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "(ERROR) Agregar un pedido",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 500\"]=responseCode.code==500;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/RotondAndes/rest/ID2/pedidos",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"idPedido\": 10,\n        \"fecha\": \"2017-10-04\",\n        \"idZona\": 2,\n        \"precioTotal\": 0,\n        \"idUsuario\": \"ID2\"\n    }"
+				},
+				"description": "Lo hace un usuario que no sea cliente"
+			},
+			"response": []
+		},
+		{
+			"name": "Consultar los productos de un pedido",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"]=responseCode.code==200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/RotondAndes/rest/0/productosPedidos/1",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"idPedido\": 10,\n        \"fecha\": \"2017-10-04\",\n        \"idZona\": 2,\n        \"precioTotal\": 0,\n        \"idUsuario\": \"ID2\"\n    }"
+				},
+				"description": "Lo hace un usuario no registrado"
+			},
+			"response": []
+		},
+		{
+			"name": "Agregar un producto al pedido",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"]=responseCode.code==200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/RotondAndes/rest/0/productosPedidos",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"idPedido\": 1,\n        \"nomProducto\": \"Empanadas\",\n        \"nomRestaurante\": \"Subway\"\n}"
+				},
+				"description": "Lo hace un usuario no registrado"
+			},
+			"response": []
+		},
+		{
+			"name": "Agregar un producto a un pedido (cliente)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"]=responseCode.code==200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/RotondAndes/rest/ID1/productosPedidos",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"idPedido\": 8,\n        \"nomProducto\": \"Empanadas\",\n        \"nomRestaurante\": \"Subway\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "(ERROR) Agregar un producto a un pedido",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 500\"]=responseCode.code==500;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/RotondAndes/rest/ID2/productosPedidos",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"idPedido\": 2,\n        \"nomProducto\": \"Empanadas\",\n        \"nomRestaurante\": \"Subway\"\n}"
+				},
+				"description": "Lo hace un usuario que no es cliente"
+			},
+			"response": []
+		},
+		{
+			"name": "Consultar que las unidades disponibles cambiaron",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"]=responseCode.code==200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/RotondAndes/rest/0/restaurantesProducto/Subway",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"idPedido\": 2,\n        \"nomProducto\": \"Empanadas\",\n        \"nomRestaurante\": \"Subway\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}

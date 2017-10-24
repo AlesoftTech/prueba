@@ -1,0 +1,166 @@
+{
+	"variables": [],
+	"info": {
+		"name": "menu",
+		"_postman_id": "c4885f5c-811f-2601-1cba-757105cd079b",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Obtener los productos de un menu",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"]=responseCode.code==200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/RotondAndes/rest/0/productosMenu/MenuFantastico",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"nombre\": \"USUARIO6\",\n        \"identificacion\": \"ID6\",\n        \"correo\": \"CORREONUEVO\",\n        \"rol\": \"UsuarioCliente\"\n}"
+				},
+				"description": "Lo hace cualquiera"
+			},
+			"response": []
+		},
+		{
+			"name": "(ERROR) Agregar producto a un menu",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 500\"]=responseCode.code==500;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/RotondAndes/rest/0/productosMenu",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"nomMenu\": \"MenuFantastico\",\n        \"nomProducto\": \"Leche asada\"\n    }"
+				},
+				"description": "Lo hace un usuario no registrado"
+			},
+			"response": []
+		},
+		{
+			"name": "(ERROR) Agregar un producto a un menu",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 500\"]=responseCode.code==500;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/RotondAndes/rest/ID1/productosMenu",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"nomMenu\": \"MenuFantastico\",\n        \"nomProducto\": \"Leche asada\"\n    }"
+				},
+				"description": "Lo hace uno que no es usuario restaurante"
+			},
+			"response": []
+		},
+		{
+			"name": "Agregar un producto a un menu",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"]=responseCode.code==200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/RotondAndes/rest/ID3/productosMenu",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"nomMenu\": \"MenuFantastico\",\n        \"nomProducto\": \"Leche asada\"\n    }"
+				},
+				"description": "Lo hac eun usuario restaurante y es de una categoria que falta en el menu"
+			},
+			"response": []
+		},
+		{
+			"name": "(ERROR) Agregar un producto a un menu",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 500\"]=responseCode.code==500;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/RotondAndes/rest/ID3/productosMenu",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"nomMenu\": \"MenuFantastico\",\n        \"nomProducto\": \"Nestea\"\n    }"
+				},
+				"description": "El menu ya tiene un producto de esa misma categoria"
+			},
+			"response": []
+		}
+	]
+}

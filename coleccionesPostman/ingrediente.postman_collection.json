@@ -1,0 +1,321 @@
+{
+	"variables": [],
+	"info": {
+		"name": "ingrediente",
+		"_postman_id": "fb9a21cd-5d07-a9ff-a35b-6b5d5f324a7c",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Obtener Ingredientes",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"]=responseCode.code==200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/RotondAndes/rest/0/ingredientes",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"nomProducto\": \"Jugo de mora\",\n        \"nomRestaurante\": \"Papelon\",\n        \"costoProd\": 2000,\n        \"precio\": 8000,\n        \"unidadesDisponibles\": 8\n    }"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "(ERROR) Ingresar un ingrediente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 500\"]=responseCode.code==500;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/RotondAndes/rest/ID1/ingredientes",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"nombre\": \"Mantequilla\",\n        \"descripcion\": \"Con sal\",\n        \"descTraducida\": \"Salty butter\"\n    }"
+				},
+				"description": "Un usuario no restaurante ingresa un ingrediente"
+			},
+			"response": []
+		},
+		{
+			"name": "(ERROR) Ingresar un ingrediente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 500\"]=responseCode.code==500;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/RotondAndes/rest/0/ingredientes",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"nombre\": \"Mantequilla\",\n        \"descripcion\": \"Con sal\",\n        \"descTraducida\": \"Salty butter\"\n    }"
+				},
+				"description": "Un usuario no registrado ingresa un ingrediente"
+			},
+			"response": []
+		},
+		{
+			"name": "Ingresar Ingrediente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"]=responseCode.code==200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/RotondAndes/rest/ID3/ingredientes",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"nombre\": \"Mantequilla\",\n        \"descripcion\": \"Con sal\",\n        \"descTraducida\": \"Salty butter\"\n    }"
+				},
+				"description": "Un usuario restaurante ingresa un ingrediente"
+			},
+			"response": []
+		},
+		{
+			"name": "(ERROR) Borrar un ingrediente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 500\"]=responseCode.code==500;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/RotondAndes/rest/0/ingredientes",
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"nombre\": \"Mantequilla\",\n        \"descripcion\": \"Con sal\",\n        \"descTraducida\": \"Salty butter\"\n    }"
+				},
+				"description": "Un usuario no registrado borra un restaurante"
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminar Ingrediente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"]=responseCode.code==200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/RotondAndes/rest/ID3/ingredientes",
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"nombre\": \"Mantequilla\",\n        \"descripcion\": \"Con sal\",\n        \"descTraducida\": \"Salty butter\"\n    }"
+				},
+				"description": "Un usuario restaurante borra un ingrediente"
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener Ingredientes de Hamburguesa",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"]=responseCode.code==200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/RotondAndes/rest/0/productosIngredientes/Hamburguesa",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"nombre\": \"Mantequilla\",\n        \"descripcion\": \"Con sal\",\n        \"descTraducida\": \"Salty butter\"\n    }"
+				},
+				"description": "Un usuario no regisrado consulta los ingredientes de la hamburguesa"
+			},
+			"response": []
+		},
+		{
+			"name": "(ERROR) Agregar un ingrediente a Hamburguesa",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 500\"]=responseCode.code==500;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/RotondAndes/rest/0/productosIngredientes",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"nomProducto\": \"Hamburguesa\",\n        \"nomIngrediente\": \"Pollo\"\n    }"
+				},
+				"description": "Un usuario no registrado ingresa un ingrediente de un producto"
+			},
+			"response": []
+		},
+		{
+			"name": "Agregar un Ingrediente a Hamburguesa",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"]=responseCode.code==200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/RotondAndes/rest/ID3/productosIngredientes",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"nomProducto\": \"Hamburguesa\",\n        \"nomIngrediente\": \"Pollo\"\n    }"
+				},
+				"description": "Lo hace un usuario Restaurante"
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminar Ingrediente a Hamburguesa",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"]=responseCode.code==200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/RotondAndes/rest/ID3/productosIngredientes",
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"nomProducto\": \"Hamburguesa\",\n        \"nomIngrediente\": \"Pollo\"\n    }"
+				},
+				"description": "Un usuario restaurante elimina un ingrediente a hamburguesa"
+			},
+			"response": []
+		}
+	]
+}

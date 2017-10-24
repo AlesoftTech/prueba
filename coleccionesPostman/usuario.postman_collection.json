@@ -1,0 +1,476 @@
+{
+	"variables": [],
+	"info": {
+		"name": "usuario",
+		"_postman_id": "546e8098-914d-4faa-f15c-f1e05226f0f6",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "(ERROR) Consultar todos los usuarios",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 500\"]=responseCode.code==500;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/RotondAndes/rest/0/usuarios",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"idPedido\": 8,\n        \"nomProducto\": \"Empanadas\",\n        \"nomRestaurante\": \"Subway\"\n}"
+				},
+				"description": "Lo hace un usuario no registrado"
+			},
+			"response": []
+		},
+		{
+			"name": "(ERROR) Consultar todos los usuarios",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 500\"]=responseCode.code==500;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/RotondAndes/rest/ID1/usuarios",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"idPedido\": 8,\n        \"nomProducto\": \"Empanadas\",\n        \"nomRestaurante\": \"Subway\"\n}"
+				},
+				"description": "Lo hace un cliente"
+			},
+			"response": []
+		},
+		{
+			"name": "Consultar un usuario (a sí mismo)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"]=responseCode.code==200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/RotondAndes/rest/ID1/usuarios/ID1",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"idPedido\": 8,\n        \"nomProducto\": \"Empanadas\",\n        \"nomRestaurante\": \"Subway\"\n}"
+				},
+				"description": "Un usuario se consulta a sí mismo"
+			},
+			"response": []
+		},
+		{
+			"name": "Consultar un usuario siendo admin",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"]=responseCode.code==200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/RotondAndes/rest/ID2/usuarios/ID1",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"idPedido\": 8,\n        \"nomProducto\": \"Empanadas\",\n        \"nomRestaurante\": \"Subway\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Consultar todos los usuarios siendo admin",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"]=responseCode.code==200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/RotondAndes/rest/ID2/usuarios",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"idPedido\": 8,\n        \"nomProducto\": \"Empanadas\",\n        \"nomRestaurante\": \"Subway\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Crear un usuario no cliente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"]=responseCode.code==200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/RotondAndes/rest/0/usuarios",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"nombre\": \"USUARIO5\",\n        \"identificacion\": \"ID5\",\n        \"correo\": \"CORREO5\",\n        \"rol\": \"UsuarioRestaurante\"\n    }"
+				},
+				"description": "Lo hace cualquiera"
+			},
+			"response": []
+		},
+		{
+			"name": "(ERROR) Crear un cliente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 500\"]=responseCode.code==500;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/RotondAndes/rest/0/usuarios",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"nombre\": \"USUARIO6\",\n        \"identificacion\": \"ID6\",\n        \"correo\": \"CORREO5\",\n        \"rol\": \"UsuarioCliente\"\n    }"
+				},
+				"description": "Lo hace uno no registrado"
+			},
+			"response": []
+		},
+		{
+			"name": "(ERROR) Agregar un cliente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 500\"]=responseCode.code==500;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/RotondAndes/rest/ID1/usuarios",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"nombre\": \"USUARIO6\",\n        \"identificacion\": \"ID6\",\n        \"correo\": \"CORREO5\",\n        \"rol\": \"UsuarioCliente\"\n    }"
+				},
+				"description": "Lo hace uno no admin"
+			},
+			"response": []
+		},
+		{
+			"name": "Agregar un Cliente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"]=responseCode.code==200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/RotondAndes/rest/ID2/usuarios",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"nombre\": \"USUARIO6\",\n        \"identificacion\": \"ID6\",\n        \"correo\": \"CORREO5\",\n        \"rol\": \"UsuarioCliente\"\n    }"
+				},
+				"description": "Lo hace un admin"
+			},
+			"response": []
+		},
+		{
+			"name": "(ERROR) Editar un usuario",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 500\"]=responseCode.code==500;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/RotondAndes/rest/0/usuarios",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"nombre\": \"USUARIO6\",\n        \"identificacion\": \"ID6\",\n        \"correo\": \"CORREONUEVO\",\n        \"rol\": \"UsuarioCliente\"\n}"
+				},
+				"description": "lo hace uno no registrado"
+			},
+			"response": []
+		},
+		{
+			"name": "(ERROR) Editar un usuario",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 500\"]=responseCode.code==500;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/RotondAndes/rest/ID1/usuarios",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"nombre\": \"USUARIO6\",\n        \"identificacion\": \"ID6\",\n        \"correo\": \"CORREONUEVO\",\n        \"rol\": \"UsuarioCliente\"\n}"
+				},
+				"description": "Lo hace uno que no es el mismo o un admin"
+			},
+			"response": []
+		},
+		{
+			"name": "Editar un usuario",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"]=responseCode.code==200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/RotondAndes/rest/ID6/usuarios",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"nombre\": \"USUARIO6\",\n        \"identificacion\": \"ID6\",\n        \"correo\": \"CORREONUEVO\",\n        \"rol\": \"UsuarioCliente\"\n}"
+				},
+				"description": "Lo hace el mismo"
+			},
+			"response": []
+		},
+		{
+			"name": "(ERROR) Eliminar usuario",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 500\"]=responseCode.code==500;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/RotondAndes/rest/0/usuarios",
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"nombre\": \"USUARIO6\",\n        \"identificacion\": \"ID6\",\n        \"correo\": \"CORREONUEVO\",\n        \"rol\": \"UsuarioCliente\"\n}"
+				},
+				"description": "Lo hace uno no registrado"
+			},
+			"response": []
+		},
+		{
+			"name": "(ERROR) Eliminar un usuario",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 500\"]=responseCode.code==500;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/RotondAndes/rest/ID1/usuarios",
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"nombre\": \"USUARIO6\",\n        \"identificacion\": \"ID6\",\n        \"correo\": \"CORREONUEVO\",\n        \"rol\": \"UsuarioCliente\"\n}"
+				},
+				"description": "Lo hace otro usuario no admin"
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminar un usuario",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"]=responseCode.code==200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/RotondAndes/rest/ID2/usuarios",
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"nombre\": \"USUARIO6\",\n        \"identificacion\": \"ID6\",\n        \"correo\": \"CORREONUEVO\",\n        \"rol\": \"UsuarioCliente\"\n}"
+				},
+				"description": "Lo hace un admin"
+			},
+			"response": []
+		}
+	]
+}

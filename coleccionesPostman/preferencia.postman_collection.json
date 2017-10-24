@@ -1,0 +1,259 @@
+{
+	"variables": [],
+	"info": {
+		"name": "preferencia",
+		"_postman_id": "7838cf0a-9163-8c9f-1a26-52d40afd1200",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Obtener las preferencias de un usuario",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"]=responseCode.code==200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/RotondAndes/rest/ID1/preferencias/ID1",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"nombre\": \"CasaYumYum\",\n        \"representante\": \"Michel Neft\",\n        \"tipoComida\": \"Dulces\",\n        \"paginaWeb\": \"com.feedburner.yumyum\"\n    }"
+				},
+				"description": "Lo hace el mismo usuario cliente"
+			},
+			"response": []
+		},
+		{
+			"name": "(ERROR) Obtener las preferencias de un usuario",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 500\"]=responseCode.code==500;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/RotondAndes/rest/0/preferencias/ID1",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"nombre\": \"CasaYumYum\",\n        \"representante\": \"Michel Neft\",\n        \"tipoComida\": \"Dulces\",\n        \"paginaWeb\": \"com.feedburner.yumyum\"\n    }"
+				},
+				"description": "Lo hace uno no registrado"
+			},
+			"response": []
+		},
+		{
+			"name": "(ERROR) Agregar una preferencia",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 500\"]=responseCode.code==500;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/RotondAndes/rest/0/preferencias/ID1",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"idCliente\": \"ID1\",\n        \"tipo\": \"Dulces\"\n    }"
+				},
+				"description": "Un usuario no registrado lo hace"
+			},
+			"response": []
+		},
+		{
+			"name": "(ERROR) agregar una preferencia",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 500\"]=responseCode.code==500;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/RotondAndes/rest/ID2/preferencias/ID1",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"idCliente\": \"ID1\",\n        \"tipo\": \"Dulces\"\n    }"
+				},
+				"description": "Lo hace otro usuario"
+			},
+			"response": []
+		},
+		{
+			"name": "Agregar una preferencia de un usuario",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"]=responseCode.code==200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/RotondAndes/rest/ID1/preferencias/ID1",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"idCliente\": \"ID1\",\n        \"tipo\": \"Dulces\"\n    }"
+				},
+				"description": "Lo hace el mismo usuario"
+			},
+			"response": []
+		},
+		{
+			"name": "(ERROR) Agregar una preferencia",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 500\"]=responseCode.code==500;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/RotondAndes/rest/ID3/preferencias/ID3",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"idCliente\": \"ID3\",\n        \"tipo\": \"Dulces\"\n    }"
+				},
+				"description": "A un usuario que no sea cliente"
+			},
+			"response": []
+		},
+		{
+			"name": "(ERROR) Borrar una preferencia",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 500\"]=responseCode.code==500;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/RotondAndes/rest/0/preferencias/ID1",
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"idCliente\": \"ID1\",\n        \"tipo\": \"Dulces\"\n }"
+				},
+				"description": "Lo hace uno no registrado"
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar una preferencia",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"]=responseCode.code==200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/RotondAndes/rest/ID1/preferencias/ID1",
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"idCliente\": \"ID1\",\n        \"tipo\": \"Dulces\"\n }"
+				},
+				"description": "Lo hace el mismo usuario"
+			},
+			"response": []
+		}
+	]
+}

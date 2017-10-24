@@ -1,0 +1,228 @@
+{
+	"variables": [],
+	"info": {
+		"name": "zona",
+		"_postman_id": "b0d0d4b8-7fbf-b29d-dc4c-d5c995edce43",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Obtener zonas",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"]=responseCode.code==200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/RotondAndes/rest/0/zonas",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"idCliente\": \"ID1\",\n        \"tipo\": \"Dulces\"\n }"
+				},
+				"description": "Lo hace un usuario no registrado"
+			},
+			"response": []
+		},
+		{
+			"name": "(ERROR) Agregar una zona",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 500\"]=responseCode.code==500;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/RotondAndes/rest/0/zonas",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": " {\n        \"id\": 4,\n        \"capacidad\": 25,\n        \"abierto\": false,\n        \"accesoNecEsp\": false,\n        \"asadores\": true,\n        \"extractores\": true,\n        \"calentadores\": true,\n        \"acondicionarse\": true\n    }"
+				},
+				"description": "Lo hace uno no registrado"
+			},
+			"response": []
+		},
+		{
+			"name": "(ERROR) Agregar una zon",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 500\"]=responseCode.code==500;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/RotondAndes/rest/ID1/zonas",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": " {\n        \"id\": 4,\n        \"capacidad\": 25,\n        \"abierto\": false,\n        \"accesoNecEsp\": false,\n        \"asadores\": true,\n        \"extractores\": true,\n        \"calentadores\": true,\n        \"acondicionarse\": true\n    }"
+				},
+				"description": "Lo hace un usuario no admin"
+			},
+			"response": []
+		},
+		{
+			"name": "Agregar una zona",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"]=responseCode.code==200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/RotondAndes/rest/ID2/zonas",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": " {\n        \"id\": 4,\n        \"capacidad\": 25,\n        \"abierto\": false,\n        \"accesoNecEsp\": false,\n        \"asadores\": true,\n        \"extractores\": true,\n        \"calentadores\": true,\n        \"acondicionarse\": true\n    }"
+				},
+				"description": "Lo hace el usuario admin"
+			},
+			"response": []
+		},
+		{
+			"name": "(ERROR) Eliminar una zona",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 500\"]=responseCode.code==500;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/RotondAndes/rest/0/zonas",
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": " {\n        \"id\": 4,\n        \"capacidad\": 25,\n        \"abierto\": false,\n        \"accesoNecEsp\": false,\n        \"asadores\": true,\n        \"extractores\": true,\n        \"calentadores\": true,\n        \"acondicionarse\": true\n    }"
+				},
+				"description": "Lo hac eun usuario no registrado"
+			},
+			"response": []
+		},
+		{
+			"name": "(ERROR) Agregar una zona",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 500\"]=responseCode.code==500;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/RotondAndes/rest/ID1/zonas",
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": " {\n        \"id\": 4,\n        \"capacidad\": 25,\n        \"abierto\": false,\n        \"accesoNecEsp\": false,\n        \"asadores\": true,\n        \"extractores\": true,\n        \"calentadores\": true,\n        \"acondicionarse\": true\n    }"
+				},
+				"description": "Lo hace un usuario no admin"
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminar una zona",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"]=responseCode.code==200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/RotondAndes/rest/ID2/zonas",
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": " {\n        \"id\": 4,\n        \"capacidad\": 25,\n        \"abierto\": false,\n        \"accesoNecEsp\": false,\n        \"asadores\": true,\n        \"extractores\": true,\n        \"calentadores\": true,\n        \"acondicionarse\": true\n    }"
+				},
+				"description": "Lo hace un usuario admin"
+			},
+			"response": []
+		}
+	]
+}

@@ -1,0 +1,259 @@
+{
+	"variables": [],
+	"info": {
+		"name": "producto",
+		"_postman_id": "87a130f5-1ab0-726f-ce80-20ef4cac780d",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Consultar todos los Productos",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"]=responseCode.code==200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/RotondAndes/rest/0/productos",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"nomProducto\": \"Hamburguesa\",\n        \"nomIngrediente\": \"Pollo\"\n    }"
+				},
+				"description": "Un usuario no registrado lo hace"
+			},
+			"response": []
+		},
+		{
+			"name": "(ERROR) Agregar un producto",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 500\"]=responseCode.code==500;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/RotondAndes/rest/0/productos",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"nombre\": \"Salsa de soya\",\n        \"descripcion\": \"Salsa asiatica\",\n        \"descTraducida\": \"asian sauce\",\n        \"tiempoPrep\": 10,\n        \"tipo\": \"Asiatico\",\n        \"categoria\": \"Acompanamiento\"\n    }"
+				},
+				"description": "Lo hace un usuario no registrado"
+			},
+			"response": []
+		},
+		{
+			"name": "(ERROR) Agregar un producto",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 500\"]=responseCode.code==500;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/RotondAndes/rest/ID1/productos",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"nombre\": \"Salsa de soya\",\n        \"descripcion\": \"Salsa asiatica\",\n        \"descTraducida\": \"asian sauce\",\n        \"tiempoPrep\": 10,\n        \"tipo\": \"Asiatico\",\n        \"categoria\": \"Acompanamiento\"\n    }"
+				},
+				"description": "Lo hace un usuario no restaurante"
+			},
+			"response": []
+		},
+		{
+			"name": "Agregar un producto",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"]=responseCode.code==200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/RotondAndes/rest/ID3/productos",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"nombre\": \"Salsa de soya\",\n        \"descripcion\": \"Salsa asiatica\",\n        \"descTraducida\": \"asian sauce\",\n        \"tiempoPrep\": 10,\n        \"tipo\": \"Asiatico\",\n        \"categoria\": \"Acompanamiento\"\n    }"
+				},
+				"description": "Lo hace un usuario restaurante"
+			},
+			"response": []
+		},
+		{
+			"name": "Consultar los productos de un restaurante",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"]=responseCode.code==200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/RotondAndes/rest/0/restaurantesProducto/Mafia",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"nombre\": \"Salsa de soya\",\n        \"descripcion\": \"Salsa asiatica\",\n        \"descTraducida\": \"asian sauce\",\n        \"tiempoPrep\": 10,\n        \"tipo\": \"Asiatico\",\n        \"categoria\": \"Acompanamiento\"\n    }"
+				},
+				"description": "Lo hace un usuario no registrado"
+			},
+			"response": []
+		},
+		{
+			"name": "(ERROR) Agregar un producto de un restaurante",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 500\"]=responseCode.code==500;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/RotondAndes/rest/0/restaurantesProducto",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"nomProducto\": \"Salsa de soya\",\n        \"nomRestaurante\": \"Mafia\",\n        \"costoProd\": 3500,\n        \"precio\": 5000,\n        \"unidadesDisponibles\": 5\n    }"
+				},
+				"description": "Lo hace un usuario no registrado"
+			},
+			"response": []
+		},
+		{
+			"name": "Agregar un producto a un restaurante",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"]=responseCode.code==200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/RotondAndes/rest/ID3/restaurantesProducto",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"nomProducto\": \"Salsa de soya\",\n        \"nomRestaurante\": \"Mafia\",\n        \"costoProd\": 3500,\n        \"precio\": 5000,\n        \"unidadesDisponibles\": 5\n    }"
+				},
+				"description": "Lo hace un usuario restaurante"
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminar Producto de un restaurante",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"]=responseCode.code==200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/RotondAndes/rest/ID3/restaurantesProducto",
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"nomProducto\": \"Salsa de soya\",\n        \"nomRestaurante\": \"Mafia\",\n        \"costoProd\": 3500,\n        \"precio\": 5000,\n        \"unidadesDisponibles\": 5\n    }"
+				},
+				"description": "Lo hace un usuario restaurante"
+			},
+			"response": []
+		}
+	]
+}

@@ -1,0 +1,197 @@
+{
+	"variables": [],
+	"info": {
+		"name": "restaurante",
+		"_postman_id": "e5eb5530-cc65-73db-3050-2fef4beec5cf",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Consultar los restaurantes",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"]=responseCode.code==200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/RotondAndes/rest/0/restaurantes",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"nomProducto\": \"Salsa de soya\",\n        \"nomRestaurante\": \"Mafia\",\n        \"costoProd\": 3500,\n        \"precio\": 5000,\n        \"unidadesDisponibles\": 5\n    }"
+				},
+				"description": "Lo hace un usuario no registrado"
+			},
+			"response": []
+		},
+		{
+			"name": "(ERROR) Agregar un restaurante",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 500\"]=responseCode.code==500;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/RotondAndes/rest/0/restaurantes",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"nombre\": \"CasaYumYum\",\n        \"representante\": \"Michel Neft\",\n        \"tipoComida\": \"Dulces\",\n        \"paginaWeb\": \"com.feedburner.yumyum\"\n    }"
+				},
+				"description": "Lo hace un usuario no registrado"
+			},
+			"response": []
+		},
+		{
+			"name": "(ERROR) Agregar un restaurante",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 500\"]=responseCode.code==500;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/RotondAndes/rest/ID1/restaurantes",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"nombre\": \"CasaYumYum\",\n        \"representante\": \"Michel Neft\",\n        \"tipoComida\": \"Dulces\",\n        \"paginaWeb\": \"com.feedburner.yumyum\"\n    }"
+				},
+				"description": "Lo hace un usuario no admin"
+			},
+			"response": []
+		},
+		{
+			"name": "Agregar un restaurante",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"]=responseCode.code==200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/RotondAndes/rest/ID2/restaurantes",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"nombre\": \"CasaYumYum\",\n        \"representante\": \"Michel Neft\",\n        \"tipoComida\": \"Dulces\",\n        \"paginaWeb\": \"com.feedburner.yumyum\"\n    }"
+				},
+				"description": "Lo hace un usuario admin"
+			},
+			"response": []
+		},
+		{
+			"name": "(ERROR) Borrar un restaurante",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 500\"]=responseCode.code==500;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/RotondAndes/rest/ID3/restaurantes/CasaYumYum",
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"nombre\": \"CasaYumYum\",\n        \"representante\": \"Michel Neft\",\n        \"tipoComida\": \"Dulces\",\n        \"paginaWeb\": \"com.feedburner.yumyum\"\n    }"
+				},
+				"description": "Lo hace un usuario no admin"
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminar un restaurante",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"]=responseCode.code==200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/RotondAndes/rest/ID2/restaurantes/CasaYumYum",
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"nombre\": \"CasaYumYum\",\n        \"representante\": \"Michel Neft\",\n        \"tipoComida\": \"Dulces\",\n        \"paginaWeb\": \"com.feedburner.yumyum\"\n    }"
+				},
+				"description": "Lo hace un usuario admin"
+			},
+			"response": []
+		}
+	]
+}
