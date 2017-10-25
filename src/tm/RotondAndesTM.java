@@ -10,6 +10,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Properties;
 
+import dao.DAOTablaEquivalenciaProducto;
 import dao.DAOTablaIngredientes;
 import dao.DAOTablaPedidos;
 import dao.DAOTablaPreferencias;
@@ -21,6 +22,7 @@ import dao.DAOTablaRestauranteProducto;
 import dao.DAOTablaRestaurantes;
 import dao.DAOTablaUsuarios;
 import dao.DAOTablaZonas;
+import vos.EquivalenciaProducto;
 import vos.FechaNombreCuenta;
 import vos.InfoUsuario;
 import vos.InfoZonaInfoPedido;
@@ -2132,7 +2134,7 @@ public class RotondAndesTM {
 			Usuario u;
 			if(idUs.equals("0")) 
 			{
-				throw new Exception("Sólo un usuarioRestaurante puede ver editar los productos que sirve un restaurante");
+				throw new Exception("Sólo un usuarioRestaurante puede ver editar los ingredientes de un producto");
 			}
 			else {
 				this.conn=darConexion();
@@ -2166,7 +2168,107 @@ public class RotondAndesTM {
 				throw exception;
 			}
 		}
-	}	
+	}
+	
+	
+	
+	public void addEquivalenciaProducto(String idUs, EquivalenciaProducto eqPro) throws Exception {
+		DAOTablaEquivalenciaProducto daoEquivalenciaProductos = new DAOTablaEquivalenciaProducto();		
+		DAOTablaUsuarios daoUsuarios = new DAOTablaUsuarios();
+		try 
+		{			
+			Usuario x;
+			if(!idUs.equals("0")) 
+			{
+				this.conn=darConexion();
+				daoUsuarios.setConn(conn);
+				x=daoUsuarios.buscarUsuarioPorId(idUs);			
+				if(!x.getRol().equals("UsuarioRestaurante")) {
+					throw new Exception("El identificador "+idUs+" no corresponde a un usuarioRestaurante");
+				}
+			}
+			//////transaccion
+			this.conn = darConexion();
+			daoEquivalenciaProductos.setConn(conn);
+			daoEquivalenciaProductos.addEquivalenciaProducto(eqPro);
+			conn.commit();
+
+		} catch (SQLException e) {
+			System.err.println("SQLException:" + e.getMessage());
+			e.printStackTrace();
+			throw e;
+		} catch (Exception e) {
+			System.err.println("GeneralException:" + e.getMessage());
+			e.printStackTrace();
+			throw e;
+		} finally {
+			try {
+				daoEquivalenciaProductos.cerrarRecursos();
+				if(this.conn!=null)
+					this.conn.close();
+			} catch (SQLException exception) {
+				System.err.println("SQLException closing resources:" + exception.getMessage());
+				exception.printStackTrace();
+				throw exception;
+			}
+		}
+	}
+	
+	public void deleteEquivalenciaProducto(String idUs,EquivalenciaProducto EquivalenciaProducto) throws Exception {
+		DAOTablaEquivalenciaProducto daoEquivalenciaProductos = new DAOTablaEquivalenciaProducto();
+		DAOTablaUsuarios daoUsuarios = new DAOTablaUsuarios();
+		try 
+		{			
+			Usuario u;
+			if(idUs.equals("0")) 
+			{
+				throw new Exception("Sólo un usuarioRestaurante puede editar las equivalencias de un producto");
+			}
+			else {
+				this.conn=darConexion();
+				daoUsuarios.setConn(conn);
+			u=daoUsuarios.buscarUsuarioPorId(idUs);			
+			if(!u.getRol().equals("UsuarioRestaurante")) {
+				throw new Exception("El identificador "+idUs+" no corresponde a un usuarioRestaurante");
+			}
+			}
+			//////transaccion
+			this.conn = darConexion();
+			daoEquivalenciaProductos.setConn(conn);
+			daoEquivalenciaProductos.deleteEquivalenciaProducto(EquivalenciaProducto);
+
+		} catch (SQLException e) {
+			System.err.println("SQLException:" + e.getMessage());
+			e.printStackTrace();
+			throw e;
+		} catch (Exception e) {
+			System.err.println("GeneralException:" + e.getMessage());
+			e.printStackTrace();
+			throw e;
+		} finally {
+			try {
+				daoEquivalenciaProductos.cerrarRecursos();
+				if(this.conn!=null)
+					this.conn.close();
+			} catch (SQLException exception) {
+				System.err.println("SQLException closing resources:" + exception.getMessage());
+				exception.printStackTrace();
+				throw exception;
+			}
+		}
+	}
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	public RFC2 consultarUnaZona(Long id) throws Exception {
 
